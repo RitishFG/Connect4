@@ -1,8 +1,53 @@
-body {
-  background-color: black;
-}
-div {
+#board {
   border: 1px solid red;
-  width: 50%;
-  height: 200px;
+  width: 48%;
+  height: 560px;
+  margin: auto;
+  background-color: #638cff;
+  border: 2px solid blue;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  /* gap: 5px; */
+}
+.spot {
+  margin: 15px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 60%;
+}
+#push {
+  width: 48%;
+  /* border: 1px solid red; */
+  height: 60px;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 15px;
+}
+#push > button {
+  /* margin: 15px; */
+  border-radius: 5px;
+  background-color: rgb(32, 207, 207);
+  font-weight: bold;
+  cursor: pointer;
+}
+#turn {
+  /* border: 1px solid red; */
+  width: 48%;
+  height: 50px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  /* text-align: center; */
+  justify-content: center;
+  font-size: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  font-weight: bold;
+}
+.result {
+  margin: 15px;
+  border-radius: 60%;
+  border: 3px solid #63f437;
 }
