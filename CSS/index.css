@@ -9,6 +9,12 @@
   grid-template-columns: repeat(7, 1fr);
   /* gap: 5px; */
 }
+#board > div {
+  transition-property: background;
+  transition-delay: 0.1s;
+  transition-duration: 0.7s;
+  /* transition: background 0.5s; */
+}
 .spot {
   margin: 15px;
   background-color: white;
@@ -23,6 +29,8 @@
   margin-top: 10px;
   margin-bottom: 10px;
   display: flex;
+  /* grid-template-columns: repeat(7, 1fr); */
+  /* flex-wrap: wrap; */
   gap: 15px;
 }
 #push > button {
@@ -50,4 +58,16 @@
   margin: 15px;
   border-radius: 60%;
   border: 3px solid #63f437;
+}
+@media screen and (min-width: 100px) and (max-width: 1150px) {
+  #turn {
+    width: 80%;
+  }
+  #push {
+    width: 80%;
+    /* border: 1px solid red; */
+  }
+  #board {
+    width: 80%;
+  }
 }

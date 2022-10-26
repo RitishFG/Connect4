@@ -81,6 +81,7 @@ let checkWinner = (temp, j) => {
     flag = "R";
     player = Player2;
   }
+  let bit = 0;
   //   to check vertically downwards
   if (temp + 3 <= 5) {
     if (
@@ -96,10 +97,7 @@ let checkWinner = (temp, j) => {
         [temp + 3, j],
       ];
       highlight(res);
-      setTimeout(function () {
-        alert(player + " Wins!!\nNew Game?");
-        location.reload();
-      }, 200);
+      bit = 1;
     }
   }
   //   to check right side
@@ -117,10 +115,42 @@ let checkWinner = (temp, j) => {
         [temp, j + 3],
       ];
       highlight(res);
-      setTimeout(function () {
-        alert(player + " Wins!!\nNew Game?");
-        location.reload();
-      }, 200);
+      bit = 1;
+    }
+  }
+  if (j + 2 <= 6 && j - 1 >= 0) {
+    if (
+      board[temp][j] == flag &&
+      board[temp][j + 1] == flag &&
+      board[temp][j + 2] == flag &&
+      board[temp][j - 1] == flag
+    ) {
+      // console.log("done");
+      let res = [
+        [temp, j],
+        [temp, j + 1],
+        [temp, j + 2],
+        [temp, j - 1],
+      ];
+      highlight(res);
+      bit = 1;
+    }
+  }
+  if (j + 1 <= 6 && j - 2 >= 0) {
+    if (
+      board[temp][j] == flag &&
+      board[temp][j + 1] == flag &&
+      board[temp][j - 1] == flag &&
+      board[temp][j - 2] == flag
+    ) {
+      let res = [
+        [temp, j],
+        [temp, j + 1],
+        [temp, j - 1],
+        [temp, j - 2],
+      ];
+      highlight(res);
+      bit = 1;
     }
   }
   //   to check left side
@@ -138,10 +168,7 @@ let checkWinner = (temp, j) => {
         [temp, j - 3],
       ];
       highlight(res);
-      setTimeout(function () {
-        alert(player + " Wins!!\nNew Game?");
-        location.reload();
-      }, 200);
+      bit = 1;
     }
   }
   //   to check diagnol
@@ -159,10 +186,41 @@ let checkWinner = (temp, j) => {
         [temp - 3, j + 3],
       ];
       highlight(res);
-      setTimeout(function () {
-        alert(player + " Wins!!\nNew Game?");
-        location.reload();
-      }, 200);
+      bit = 1;
+    }
+  }
+  if (temp - 2 >= 0 && j + 2 <= 6 && j - 1 >= 0) {
+    if (
+      board[temp][j] == flag &&
+      board[temp - 1][j + 1] == flag &&
+      board[temp - 2][j + 2] == flag &&
+      board[temp + 1][j - 1] == flag
+    ) {
+      let res = [
+        [temp, j],
+        [temp - 1, j + 1],
+        [temp - 2, j + 2],
+        [temp + 1, j - 1],
+      ];
+      highlight(res);
+      bit = 1;
+    }
+  }
+  if (temp - 1 >= 0 && j + 1 <= 6 && j - 2 >= 0) {
+    if (
+      board[temp][j] == flag &&
+      board[temp - 1][j + 1] == flag &&
+      board[temp + 1][j - 1] == flag &&
+      board[temp + 2][j - 2] == flag
+    ) {
+      let res = [
+        [temp, j],
+        [temp - 1, j + 1],
+        [temp + 1, j - 1],
+        [temp + 2, j - 2],
+      ];
+      highlight(res);
+      bit = 1;
     }
   }
   //   to check diagnol
@@ -180,10 +238,7 @@ let checkWinner = (temp, j) => {
         [temp + 3, j - 3],
       ];
       highlight(res);
-      setTimeout(function () {
-        alert(player + " Wins!!\nNew Game?");
-        location.reload();
-      }, 200);
+      bit = 1;
     }
   }
   //   to check diagnol
@@ -201,10 +256,41 @@ let checkWinner = (temp, j) => {
         [temp + 3, j + 3],
       ];
       highlight(res);
-      setTimeout(function () {
-        alert(player + " Wins!!\nNew Game?");
-        location.reload();
-      }, 200);
+      bit = 1;
+    }
+  }
+  if (temp + 2 <= 5 && j + 2 <= 6 && j - 1 >= 0) {
+    if (
+      board[temp][j] == flag &&
+      board[temp + 1][j + 1] == flag &&
+      board[temp + 2][j + 2] == flag &&
+      board[temp - 1][j - 1] == flag
+    ) {
+      let res = [
+        [temp, j],
+        [temp + 1, j + 1],
+        [temp + 2, j + 2],
+        [temp - 1, j - 1],
+      ];
+      highlight(res);
+      bit = 1;
+    }
+  }
+  if (temp + 1 <= 5 && j + 1 <= 6 && j - 2 >= 0) {
+    if (
+      board[temp][j] == flag &&
+      board[temp + 1][j + 1] == flag &&
+      board[temp - 1][j - 1] == flag &&
+      board[temp - 2][j - 2] == flag
+    ) {
+      let res = [
+        [temp, j],
+        [temp + 1, j + 1],
+        [temp - 1, j - 1],
+        [temp - 2, j - 2],
+      ];
+      highlight(res);
+      bit = 1;
     }
   }
   //   to check diagnol
@@ -222,17 +308,21 @@ let checkWinner = (temp, j) => {
         [temp - 3, j - 3],
       ];
       highlight(res);
-      setTimeout(function () {
-        alert(player + " wins!!\nNew Game");
-      }, 200);
+      bit = 1;
     }
+  }
+  if (bit == 1) {
+    setTimeout(function () {
+      alert(player + " Wins!!\nNew Game?");
+      location.reload();
+    }, 500);
   }
 };
 // Loop to push token inside specified columns
 for (let i = 0; i < 7; i++) {
   let m = document.querySelector("#push");
   let btn = document.createElement("button");
-  btn.innerText = "Add to this column";
+  btn.innerText = "Add to column " + (i + 1);
   btn.addEventListener("click", function () {
     // i will be the button number
     pushValue(i);
