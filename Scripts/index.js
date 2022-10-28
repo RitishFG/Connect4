@@ -322,7 +322,7 @@ let checkWinner = (temp, j) => {
 for (let i = 0; i < 7; i++) {
   let m = document.querySelector("#push");
   let btn = document.createElement("button");
-  btn.innerText = "Add to column " + (i + 1);
+  btn.innerText = "Add to " + (i + 1);
   btn.addEventListener("click", function () {
     // i will be the button number
     pushValue(i);
