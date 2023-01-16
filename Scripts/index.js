@@ -179,6 +179,7 @@ let checkWinner = (temp, j) => {
       board[temp - 2][j + 2] == flag &&
       board[temp - 3][j + 3] == flag
     ) {
+      // console.log("temp-3");
       let res = [
         [temp, j],
         [temp - 1, j + 1],
@@ -189,35 +190,43 @@ let checkWinner = (temp, j) => {
       bit = 1;
     }
   }
-  if (temp - 2 >= 0 && j + 2 <= 6 && j - 1 >= 0) {
+  if (temp - 1 >= 0 && temp + 2 <= 5 && j - 2 >= 0) {
     if (
       board[temp][j] == flag &&
       board[temp - 1][j + 1] == flag &&
-      board[temp - 2][j + 2] == flag &&
+      board[temp + 2][j - 2] == flag &&
       board[temp + 1][j - 1] == flag
     ) {
+      // console.log("temp-2");
       let res = [
         [temp, j],
         [temp - 1, j + 1],
-        [temp - 2, j + 2],
+        [temp + 2, j - 2],
         [temp + 1, j - 1],
       ];
       highlight(res);
       bit = 1;
     }
   }
-  if (temp - 1 >= 0 && j + 1 <= 6 && j - 2 >= 0) {
+  if (temp + 1 <= 5 && j + 2 <= 6 && temp - 2 >= 0) {
+    // console.log("in", temp, j);
+    // console.log(temp + 1, j - 1);
+    // console.log(temp - 1, j + 1);
+    // console.log(temp - 2, j + 2);
+    // console.log("in", temp, j);
+    // console.log("in", temp, j);
     if (
       board[temp][j] == flag &&
-      board[temp - 1][j + 1] == flag &&
       board[temp + 1][j - 1] == flag &&
-      board[temp + 2][j - 2] == flag
+      board[temp - 1][j + 1] == flag &&
+      board[temp - 2][j + 2] == flag
     ) {
+      // console.log("temp-1");
       let res = [
         [temp, j],
-        [temp - 1, j + 1],
         [temp + 1, j - 1],
-        [temp + 2, j - 2],
+        [temp - 1, j + 1],
+        [temp - 2, j + 2],
       ];
       highlight(res);
       bit = 1;
